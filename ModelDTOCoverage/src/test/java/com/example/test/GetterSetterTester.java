@@ -20,7 +20,7 @@ import com.google.common.collect.ImmutableMap.Builder;
 
 /**
  * 
- * Utility class to use getters and setters
+ * Utility class to use getters and setters of an instance
  * @author Abhishek Thakur
  * 
  */
@@ -100,10 +100,10 @@ public class GetterSetterTester {
 	 * @param Instance of Input object
 	 * @param InstanceType
 	 * @return
-	 * @throws InstantiationException if failed to instantiate the instance
-	 * @throws IllegalAccessException If the class or its nullary constructor is not accessible
-	 * @throws IllegalArgumentException if the correct arument is not passed
-	 * @throws InvocationTargetException if the underlying method throws an exception
+	 * @throws InstantiationException
+	 * @throws IllegalAccessException
+	 * @throws IllegalArgumentException
+	 * @throws InvocationTargetException
 	 */
 	public Object getSetDefaultValues(Object instance, String instanceType) throws InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException {
 		SortedMap<String, GetterSetterPair> gettersSettersMapping= this.addGettersAndSettersToMap(instance);
@@ -117,9 +117,9 @@ public class GetterSetterTester {
 	 /**
 	 * @param Instance of Input object
 	 * @param Map with all getters and Setters
-	 * @throws InstantiationException if failed to instantiate the instance
-	 * @throws IllegalAccessException If the class or its nullary constructor is not accessible
-	 * @throws InvocationTargetException if the underlying method throws an exception
+	 * @throws InstantiationException
+	 * @throws IllegalAccessException
+	 * @throws InvocationTargetException
 	 */
 	private void getDefaultValuesFromInstance(Object instance, SortedMap<String, GetterSetterPair> gettersSettersMapping) throws InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException {
 		 for (final Entry<String, GetterSetterPair> entry : gettersSettersMapping.entrySet()) {
@@ -133,14 +133,10 @@ public class GetterSetterTester {
 	/**
 	 * @param Instance of Input object
 	 * @param Map with all getters and Setters
-	 * @throws IllegalAccessException If the class or its nullary constructor is not accessible
-	 * @throws InstantiationException if failed to instantiate the instance
-	 * @throws InvocationTargetException if the underlying method throws an exception
-	 * @throws IllegalArgumentException if the method is an instance method and the specified object argument is not an
-     *             instance of the class or interface declaring the underlying method (or of a subclass or implementor
-     *             thereof); if the number of actual and formal parameters differ; if an unwrapping conversion for
-     *             primitive arguments fails; or if, after possible unwrapping, a parameter value cannot be converted to
-     *             the corresponding formal parameter type by a method invocation conversion
+	 * @throws IllegalAccessException
+	 * @throws InstantiationException
+	 * @throws InvocationTargetException
+	 * @throws IllegalArgumentException
 	 */
 	private void setDefaultValuesToInstance(Object instance,SortedMap<String, GetterSetterPair> gettersSettersMapping) throws InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException {
 			for (final Entry<String, GetterSetterPair> entry : gettersSettersMapping.entrySet()) {
@@ -160,10 +156,8 @@ public class GetterSetterTester {
      * @param The name of the field
      * @param clazz type to create
      * @return new instance for Datatype
-     * @throws InstantiationException If this Class represents an abstract class, an interface, an array class, a
-     *             primitive type, or void; or if the class has no nullary constructor; or if the instantiation fails
-     *             for some other reason
-     * @throws IllegalAccessException If the class or its nullary constructor is not accessible
+     * @throws InstantiationException
+     * @throws IllegalAccessException
      *
      */
     private Object createObject(String fieldName, Class<?> clazz)
@@ -191,21 +185,21 @@ public class GetterSetterTester {
              if (methodName.startsWith("get") && method.getParameters().length == 0) {
                  /* Found the get method. */
                  objectName = methodName.substring("get".length());
-                 GetterSetterPair getterSettingPair = getterSetterMapping.get(objectName);
-                 if (getterSettingPair == null) {
-                     getterSettingPair = new GetterSetterPair();
-                     getterSetterMapping.put(objectName, getterSettingPair);
+                 GetterSetterPair getterSetterPair = getterSetterMapping.get(objectName);
+                 if (getterSetterPair == null) {
+                	 getterSetterPair = new GetterSetterPair();
+                     getterSetterMapping.put(objectName, getterSetterPair);
                  }
-                 getterSettingPair.setGetter(method);
+                 getterSetterPair.setGetter(method);
              } else if (methodName.startsWith("set") && method.getParameters().length == 1) {
                  /* Found the set method. */
                  objectName = methodName.substring("set".length());
-                 GetterSetterPair getterSettingPair = getterSetterMapping.get(objectName);
-                 if (getterSettingPair == null) {
-                     getterSettingPair = new GetterSetterPair();
-                     getterSetterMapping.put(objectName, getterSettingPair);
+                 GetterSetterPair getterSetterPair = getterSetterMapping.get(objectName);
+                 if (getterSetterPair == null) {
+                	 getterSetterPair = new GetterSetterPair();
+                     getterSetterMapping.put(objectName, getterSetterPair);
                  }
-                 getterSettingPair.setSetter(method);
+                 getterSetterPair.setSetter(method);
              } else if (methodName.startsWith("is") && method.getParameters().length == 0) {
                  /* Found the is method, which really is a get method. */
                  objectName = methodName.substring("is".length());
