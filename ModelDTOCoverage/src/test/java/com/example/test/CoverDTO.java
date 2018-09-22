@@ -11,7 +11,7 @@ public class CoverDTO {
 	@Test
 	public void testDTO() throws InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException {
 		TestDTO testDTO = new TestDTO();
-		testDTO= (TestDTO) util.getSetDefaultValues(testDTO, "DTO");
+		testDTO= (TestDTO) util.getSetDefaultValues(testDTO);
 		System.out.println(testDTO);
 	}
 }

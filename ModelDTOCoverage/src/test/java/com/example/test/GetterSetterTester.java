@@ -20,7 +20,7 @@ import com.google.common.collect.ImmutableMap.Builder;
 
 /**
  * 
- * Utility class to use getters and setters of an instance
+ * Utility class to use getters and setters
  * @author Abhishek Thakur
  * 
  */
@@ -97,6 +97,7 @@ public class GetterSetterTester {
 
 	
 	/**
+	 * Use both setters and getters of the instance
 	 * @param Instance of Input object
 	 * @param InstanceType
 	 * @return
@@ -108,9 +109,24 @@ public class GetterSetterTester {
 	public Object getSetDefaultValues(Object instance, String instanceType) throws InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException {
 		SortedMap<String, GetterSetterPair> gettersSettersMapping= this.addGettersAndSettersToMap(instance);
 		this.setDefaultValuesToInstance(instance, gettersSettersMapping);
-		if(null!= instanceType && !instanceType.isEmpty() && instanceType.equalsIgnoreCase("DTO")) {
+		if(null!= instanceType && !instanceType.isEmpty() && instanceType.equalsIgnoreCase("GetSet")) {
 			this.getDefaultValuesFromInstance(instance, gettersSettersMapping);
 		}
+		return instance;
+	}
+	
+	/**
+	 * Only set values to instance
+	 * @param Instance of Input object
+	 * @return
+	 * @throws InstantiationException
+	 * @throws IllegalAccessException
+	 * @throws IllegalArgumentException
+	 * @throws InvocationTargetException
+	 */
+	public Object getSetDefaultValues(Object instance) throws InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException {
+		SortedMap<String, GetterSetterPair> gettersSettersMapping= this.addGettersAndSettersToMap(instance);
+		this.setDefaultValuesToInstance(instance, gettersSettersMapping);
 		return instance;
 	}
 	
@@ -157,7 +173,7 @@ public class GetterSetterTester {
      * @param clazz type to create
      * @return new instance for Datatype
      * @throws InstantiationException
-     * @throws IllegalAccessException
+     * @throws IllegalAccessException If the class or its nullary constructor is not accessible
      *
      */
     private Object createObject(String fieldName, Class<?> clazz)
@@ -203,12 +219,12 @@ public class GetterSetterTester {
              } else if (methodName.startsWith("is") && method.getParameters().length == 0) {
                  /* Found the is method, which really is a get method. */
                  objectName = methodName.substring("is".length());
-                 GetterSetterPair getterSettingPair = getterSetterMapping.get(objectName);
-                 if (getterSettingPair == null) {
-                     getterSettingPair = new GetterSetterPair();
-                     getterSetterMapping.put(objectName, getterSettingPair);
+                 GetterSetterPair getterSetterPair = getterSetterMapping.get(objectName);
+                 if (getterSetterPair == null) {
+                	 getterSetterPair = new GetterSetterPair();
+                     getterSetterMapping.put(objectName, getterSetterPair);
                  }
-                 getterSettingPair.setGetter(method);
+                 getterSetterPair.setGetter(method);
              }
          }
     	return getterSetterMapping;

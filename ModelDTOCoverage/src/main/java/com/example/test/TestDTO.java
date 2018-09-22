@@ -3,6 +3,7 @@ package com.example.test;
 import java.math.BigDecimal;
 import java.sql.Date;
 import java.sql.Timestamp;
+import java.util.Arrays;
 
 public class TestDTO {
 
@@ -74,5 +75,12 @@ public class TestDTO {
 
 	public void setIntegerArray(Integer[] integerArray) {
 		this.integerArray = integerArray;
+	}
+
+	@Override
+	public String toString() {
+		return "TestDTO [id=" + id + ", name=" + name + ", totalAmount=" + totalAmount + ", timestamp=" + timestamp
+				+ ", sqlDate=" + sqlDate + ", stringArray=" + Arrays.toString(stringArray) + ", integerArray="
+				+ Arrays.toString(integerArray) + "]";
 	}
 }
