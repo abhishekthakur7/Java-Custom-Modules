@@ -14,7 +14,7 @@ public class TestDTO {
 	private BigDecimal totalAmount;
 	
 	private Timestamp timestamp;
-	
+	 
 	private Date sqlDate;
 	
 	private String[] stringArray;

@@ -25,8 +25,8 @@ import com.google.common.collect.ImmutableMap.Builder;
  * 
  */
 public class GetterSetterTester {
-
-	
+ 
+	 
 	 /** A map of default mappers for common objects */
     private static final ImmutableMap<Class<?>, Supplier<?>> DEFAULT_MAPPERS;
 	
@@ -106,10 +106,10 @@ public class GetterSetterTester {
 	 * @throws IllegalArgumentException
 	 * @throws InvocationTargetException
 	 */
-	public Object getSetDefaultValues(Object instance, String instanceType) throws InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException {
+	public Object getSetDefaultValues(Object instance, String operationType) throws InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException {
 		SortedMap<String, GetterSetterPair> gettersSettersMapping= this.addGettersAndSettersToMap(instance);
 		this.setDefaultValuesToInstance(instance, gettersSettersMapping);
-		if(null!= instanceType && !instanceType.isEmpty() && instanceType.equalsIgnoreCase("GetSet")) {
+		if(null!= operationType && !operationType.isEmpty() && operationType.equalsIgnoreCase("SetGet")) {
 			this.getDefaultValuesFromInstance(instance, gettersSettersMapping);
 		}
 		return instance;

@@ -4,7 +4,7 @@ import java.lang.reflect.InvocationTargetException;
 
 import org.junit.Test;
 
-public class CoverDTO {
+public class DTOCoverageTests {
 
 	GetterSetterTester util = new GetterSetterTester();
 	
@@ -13,5 +13,12 @@ public class CoverDTO {
 		TestDTO testDTO = new TestDTO();
 		testDTO= (TestDTO) util.getSetDefaultValues(testDTO);
 		System.out.println(testDTO);
+	}
+	
+	@Test
+	public void secondTestDTO() throws InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException {
+		SecondTestDTO secondTestDTO = new SecondTestDTO();
+		secondTestDTO= (SecondTestDTO) util.getSetDefaultValues(secondTestDTO, "SetGet");
+		System.out.println(secondTestDTO);
 	}
 }

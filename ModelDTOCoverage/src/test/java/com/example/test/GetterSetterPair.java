@@ -12,7 +12,7 @@ public class GetterSetterPair {
     /** The set method. */
     private Method setter;
 
-    /**
+    /** 
      * Returns the get method.
      *
      * @return The get method.
