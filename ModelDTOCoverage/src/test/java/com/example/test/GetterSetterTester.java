@@ -19,10 +19,7 @@ import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.ImmutableMap.Builder;
 
 /**
- * 
- * Utility class to use getters and setters
- * @author Abhishek Thakur
- * 
+ * A Utility class to use getters and setters with reflection API
  */
 public class GetterSetterTester {
  
